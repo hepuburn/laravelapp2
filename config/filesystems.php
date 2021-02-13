@@ -64,6 +64,11 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'logs' => [
+            'driver' => 'local',
+            'root' => storage_path('logs'),
+            'url' => env('APP_URL') . '/storage/logs',
+        ],
     ],
 
     /*
