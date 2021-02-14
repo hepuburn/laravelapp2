@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Person;
 use Illuminate\Support\Facades\Storage;
+use App\MyClasses\MyServiceInterface;
+use App\Facades\MyService;
 
 
 class HelloController extends Controller
@@ -14,23 +16,14 @@ class HelloController extends Controller
 
     function __construct()
     {
-       $this->fname = 'hello.txt';
     }
 
-    public function index(Request $request, Response $response)
+    public function index(Request $request)
     {
-        $name = $request->query('name');
-        $mail = $request->query('mail');
-        $tel = $request->query('tel');
-        $msg = $request->query('msg');
-        $keys = ['名前', 'メール', '電話'];
-        $values = [$name, $mail, $tel];
         $data = [
-            'msg'=> $msg,
-            'keys'=> $keys,
-            'values'=> $values,
+            'msg'=> $request->hello,
+            'data'=> $request->alldata,
         ];
-        $request->flash();
         return view('hello.index', $data);
     }
 
