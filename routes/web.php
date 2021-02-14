@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 
 Route::get('/hello/other', 'HelloController@other');
-Route::get('/hello', 'HelloController@index')->name('hello');
+Route::get('/hello/{id}', 'HelloController@index');
 
 
 Route::get('/sample', 'Sample\SampleController@index')->name('sample');

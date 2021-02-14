@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Person;
 use Illuminate\Support\Facades\Storage;
-use App\MyClasses\MyService;
+use App\MyClasses\MyServiceInterface;
+use App\Facades\MyService;
 
 
 class HelloController extends Controller
@@ -15,16 +16,15 @@ class HelloController extends Controller
 
     function __construct()
     {
-       $this->fname = 'hello.txt';
     }
 
-    public function index(MyService $myservice)
+    public function index(int $id = -1)
     {
+        MyService::setId($id);
         $data = [
-            'msg'=> $myservice->say(),
-            'data'=> $myservice->data()
+            'msg'=> MyService::say(),
+            'data'=> MyService::alldata()
         ];
-
         return view('hello.index', $data);
     }
 
