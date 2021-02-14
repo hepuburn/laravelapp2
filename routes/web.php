@@ -19,8 +19,10 @@ Route::get('/', function () {
 });
 
 
-Route::get('/hello/other', 'HelloController@other');
+Route::get('/hello', 'HelloController@index')
+    ->middleware('MyMW');
 Route::get('/hello/{id}', 'HelloController@index');
+Route::get('/hello/other', 'HelloController@other');
 
 
 Route::get('/sample', 'Sample\SampleController@index')->name('sample');
